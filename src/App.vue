@@ -8,6 +8,8 @@
 </template>
 
 <script>
+    import _ from 'lodash';
+
     export default {
         name: 'app',
         data () {
@@ -89,7 +91,8 @@
         },
         methods: {
             generateKillerIpsum() {
-                this.killerIpsum = this.killerPhrases.join(', ').toString();
+                let arr = this.killerPhrases;
+                this.killerIpsum = _.shuffle(arr).join(', ').toString();
             }
         }
     }
