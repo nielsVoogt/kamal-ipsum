@@ -91,8 +91,7 @@
         },
         methods: {
             generateKillerIpsum() {
-                let arr = this.killerPhrases;
-                this.killerIpsum = _.shuffle(arr).join(', ').toString();
+                this.killerIpsum = _.shuffle(this.killerPhrases).join(', ').toString();
             }
         }
     }
