@@ -1,9 +1,10 @@
 <template>
     <div id="app">
+        <input type="number" v-model="paragraphAmount" />
         <button @click="generateKillerIpsum()">
             Generate die wollah ipsum!
         </button>
-        <p>{{ killerIpsum }}</p>
+        <p v-for="paragraph in killerIpsum">{{ paragraph }}</p>
     </div>
 </template>
 
@@ -14,7 +15,8 @@
         name: 'app',
         data () {
             return {
-                killerIpsum: '',
+                killerIpsum: [],
+                paragraphAmount: 1,
                 killerPhrases: [
                     'AMG\'tje gehuurd? Weeejooow!',
                     'Al die kanker shit is nep',
@@ -134,7 +136,12 @@
         },
         methods: {
             generateKillerIpsum() {
-                this.killerIpsum = _.shuffle(this.killerPhrases).join(', ').toString();
+                this.killerIpsum = [];
+                for (let i = 0; i < this.paragraphAmount; i++) {
+                    const amountOfSentences = Math.floor(Math.random() * 5) + 3;
+                    const sentences = _.shuffle(this.killerPhrases).slice(0, amountOfSentences).join(', ').toString();
+                    this.killerIpsum.push(sentences);
+                }
             }
         }
     }
